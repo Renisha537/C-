@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+
+class Product {
+private:
+    std::string name;
+    double price;
+    static double discountRate; // Static discount rate for all products
+public:
+    Product(std::string name, double price) : name(name), price(price) {}
+    void setName(std::string name) {
+        this->name = name;    //setter for name
+    }
+    void setPrice(double price) {
+        this->price = price;    // Setter for price
+    }
+    std::string getName() const {
+        return name;          //getting the name
+    }
+    double getPrice() const {
+        return price;         //getting the price
+    }
+
+    static void setDiscountRate(double rate) {
+        discountRate = rate;       //to set discount rate
+    }
+
+    double calculateFinalPrice() const {
+        return price * (1 - discountRate);        // to calculate the final price after applying discount
+    }
+};
+// Initialize the static discount rate
+double Product::discountRate = 0.0;    // Default discount rate set to  0%
+
+int main() {
+    // Create products
+    Product product1("Laptop", 1000.0);
+    Product product2("Smartphone", 500.0);
+
+    // Set a global discount rate
+    Product::setDiscountRate(0.1); // 10% discount
+
+    // display final prices
+    std::cout << "Final price of " << product1.getName() << ": " << product1.calculateFinalPrice() << std::endl;
+    std::cout << "Final price of " << product2.getName() << ": " << product2.calculateFinalPrice() << std::endl;
+
+    return 0;
+}
