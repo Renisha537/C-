@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+class Player{
+  private: 
+  int level , experiencePoints;
+  string name;
+  public:
+  Player( string n, int l , int eP){
+    name=n;
+    level=l;
+    experiencePoints=eP;
+  }
+  void Display(){
+      cout<<"name: "<<name<< endl <<"level: "<<level<<endl<<"points: "<<experiencePoints<<endl;
+      
+  }
+};
+
+int main() {
+   Player P1("Renisha",14,500);
+ 
+   Player P2(P1);
+   P1.Display();
+   P2.Display();
+
+return 0;
+}
