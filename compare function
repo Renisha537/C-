@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+ 
+class Distance {
+private:
+    int feet;
+    int inches;
+
+public:
+    
+    Distance(int f, int i) {
+        feet = f;
+        inches = i;
+        convert();
+    }  
+    void convert() {
+        if (inches >= 12) {
+            feet += inches / 12;
+            inches = inches % 12;
+        }
+    }
+
+    void compare(const Distance& d) const {
+        int totalInches1 = feet * 12 + inches;
+        int totalInches2 = d.feet * 12 + d.inches;
+
+        if (totalInches1 > totalInches2) {
+          cout << "Current distance is greater: ";
+            display();
+        } else if (totalInches2 > totalInches1) {
+          cout << "Given distance is greater: ";
+            d.display();
+        } else {
+           cout << "Both distances are equal." << endl;
+        }
+    }
+
+    void display() const {
+        cout << feet << " feet " << inches << " inches" << endl;
+    }
+};
+
+
+int main() {
+    Distance d1(5, 8); // 5 feet 8 inches
+    Distance d2(6, 3); // 6 feet 3 inches
+
+   cout << "Comparing distances:" << endl;
+    d1.compare(d2);
+
+    return 0;
+}
